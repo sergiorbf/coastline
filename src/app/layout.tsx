@@ -17,22 +17,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antijaliased">
+    <html lang="en" className="antialiased">
       <head>
         <link rel="icon"
           href="/bl.svg"
           type="image/svg+xml" />
       </head>
       <body className={inter.className}>
-        <div className="min-h-screen lg:grid lg:grid-cols-app">
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="px-4 pb-12 pt-4 lg:col-start-2 lg:px-8 lg:pt-8 max-w-s">
-              <SidebarTrigger />
-              {children}
-            </main>
-          </SidebarProvider>
-        </div>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="px-4 pb-12 pt-4 lg:col-start-2 lg:px-8 lg:pt-8 max-w-s">
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );
