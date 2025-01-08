@@ -1,4 +1,4 @@
-import { Bed, Home, MapPin, Search, Settings, Sun, Utensils } from "lucide-react";
+import { Bed, Home, LucideProps, MapPin, Search, Settings, Sun, Utensils } from "lucide-react";
 import Link from "next/link";
 
 import {
@@ -11,9 +11,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
-// Menu items.
-const items = [
+interface Menu {
+  title: string
+  url: string
+  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+}
+
+const items: Menu[] = [
   {
     title: "Search",
     url: "#",
