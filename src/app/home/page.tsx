@@ -10,7 +10,12 @@ import { CalendarDays, Diff, MapPinHouse, Search, UserRound } from "lucide-react
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Popover, PopoverContent } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Label } from "@/components/ui/label";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const formSchema = z.object({
   location: z.string().min(3).max(50),
@@ -82,64 +87,130 @@ export default function Home() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto">
                       <Card>
-                        <CardHeader>
-                          <p>
-                            Calendar
-                          </p>
-                          <p>
-                            {`I'm flexible`}
-                          </p>
-                        </CardHeader>
-                        <CardContent className="flex gap-2">
-                          <FormField
-                            control={form.control}
-                            name="dateFrom"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormControl>
-                                  <Calendar mode="single" {...field}
-                                  />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={form.control}
-                            name="dateTo"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormControl>
-                                  <Calendar mode="single" {...field}
-                                  />
-                                </FormControl>
-                              </FormItem>
-                            )}
-                          />
-                        </CardContent>
-                        <CardFooter>
-                          <div className="flex gap-2">
-                            <Button>
-                              <Diff />
-                              Exact dates
-                            </Button>
-                            <Button>
-                              <Diff />
-                              1 day
-                            </Button>
-                            <Button>
-                              <Diff />
-                              2 day
-                            </Button>
-                            <Button>
-                              <Diff />
-                              3 day
-                            </Button>
-                            <Button>
-                              <Diff />
-                              7 day
-                            </Button>
-                          </div>
-                        </CardFooter>
+                        <Tabs defaultValue="calendar">
+                          <TabsList className="w-full">
+                            <TabsTrigger value="calendar">
+                              Calendar
+                            </TabsTrigger>
+                            <TabsTrigger value="flexible">
+                              {`I'm flexible`}
+                            </TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="calendar">
+                            <CardContent className="flex gap-2">
+                              <FormField
+                                control={form.control}
+                                name="dateFrom"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormControl>
+                                      <Calendar mode="single" {...field}
+                                      />
+                                    </FormControl>
+                                  </FormItem>
+                                )}
+                              />
+                              <FormField
+                                control={form.control}
+                                name="dateTo"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormControl>
+                                      <Calendar mode="single" {...field}
+                                      />
+                                    </FormControl>
+                                  </FormItem>
+                                )}
+                              />
+                            </CardContent>
+                            <CardFooter>
+                              <div className="flex gap-2">
+                                <Button>
+                                  <Diff />
+                                  Exact dates
+                                </Button>
+                                <Button>
+                                  <Diff />
+                                  1 day
+                                </Button>
+                                <Button>
+                                  <Diff />
+                                  2 day
+                                </Button>
+                                <Button>
+                                  <Diff />
+                                  3 day
+                                </Button>
+                                <Button>
+                                  <Diff />
+                                  7 day
+                                </Button>
+                              </div>
+                            </CardFooter>
+                          </TabsContent>
+                          <TabsContent value="flexible">
+                            <CardContent>
+                              <div className="p-3">
+                                <div className="flex flex-col items-center">
+                                  <span>
+                                    How long would you like to stay?
+                                  </span>
+                                </div>
+                                <div className="p-10 flex gap-4">
+                                  <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
+                                    <Label className="group-hover:cursor-pointer">
+                                      A weekend
+                                    </Label>
+                                  </div>
+                                  <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
+                                    <Label className="group-hover:cursor-pointer">
+                                      A week
+                                    </Label>
+                                  </div>
+                                  <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
+                                    <Label className="group-hover:cursor-pointer">
+                                      A month
+                                    </Label>
+                                  </div>
+                                </div>
+
+                                <Separator className="my-4" />
+                                <div className="flex flex-col items-center">
+                                  <span>
+                                    When do you want to go?
+                                  </span>
+                                  <Carousel
+                                    opts={{
+                                      align: "start",
+                                    }}
+                                    className="w-full max-w-sm"
+                                  >
+                                    <CarouselContent>
+                                      {Array.from({ length: 5 }).map((_, index) => (
+                                        <CarouselItem key={index}
+                                          className="md:basis-1/2 lg:basis-1/3">
+                                          <div className="p-1">
+                                            <Card>
+                                              <CardContent className="flex aspect-square items-center justify-center p-6">
+                                                <span className="text-3xl font-semibold">
+                                                  {index + 1}
+                                                </span>
+                                              </CardContent>
+                                            </Card>
+                                          </div>
+                                        </CarouselItem>
+                                      ))}
+                                    </CarouselContent>
+                                    <CarouselPrevious />
+                                    <CarouselNext />
+                                  </Carousel>
+                                </div>
+
+
+                              </div>
+                            </CardContent>
+                          </TabsContent>
+                        </Tabs>
                       </Card>
                     </PopoverContent>
                   </Popover>
@@ -151,11 +222,29 @@ export default function Home() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto">
                       <Card>
-                        <CardContent className="flex gap-2">
-                          content
+                        <CardContent className="flex flex-col gap-2">
+                          <span>
+                            Adults
+                          </span>
+                          <span>
+                            Children
+                          </span>
+                          <span>
+                            Rooms
+                          </span>
+                          <Separator className="my-4" />
+                          <span className="flex gap-5 items-center text-sm">
+                            Traveling with pets?
+                            <Switch />
+                          </span>
+                          <span className="text-xs">
+                            By selecting this option, you will only see properties that accept pets.
+                          </span>
                         </CardContent>
                         <CardFooter>
-                          footer
+                          <Button className="w-full">
+                            Done
+                          </Button>
                         </CardFooter>
                       </Card>
                     </PopoverContent>
