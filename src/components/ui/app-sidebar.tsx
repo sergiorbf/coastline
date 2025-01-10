@@ -1,3 +1,5 @@
+'use client'
+
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { ChevronDown } from "lucide-react";
@@ -7,7 +9,7 @@ import { ItemsMenu } from "./itemsMenu";
 
 export function AppSidebar() {
   const mainItems = items.filter((item) => item.type === "main");
-  const moreItems = items.filter((item) => item.type === "more");
+  const moreItems = items.filter((item) => item.type === "others");
 
   return (
     <Sidebar variant="floating">
@@ -16,7 +18,9 @@ export function AppSidebar() {
           <Logo />
         </SidebarHeader>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupLabel>
+            Menu
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <ItemsMenu menuItems={mainItems} />
           </SidebarGroupContent>

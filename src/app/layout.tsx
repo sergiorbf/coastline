@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/ui/app-sidebar";
+import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <link rel="icon"
           href="/bl.svg"
@@ -28,7 +29,9 @@ export default function RootLayout({
           <AppSidebar />
           <main className="px-4 pb-12 pt-4 lg:col-start-2 lg:px-8 lg:pt-8 max-w-s">
             <SidebarTrigger />
-            {children}
+            <ThemeProvider attribute='class'>
+              {children}
+            </ThemeProvider>
           </main>
         </SidebarProvider>
       </body>
