@@ -1,65 +1,24 @@
-import { Bed, ChevronDown, Home, LifeBuoyIcon, LucideProps, MapPin, Settings, Sun, Utensils } from "lucide-react";
-import Link from "next/link";
-
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
-import { Logo } from "@/app/logo";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
-
-interface Menu {
-  title: string
-  url: string
-  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
-  type: 'main' | 'utils'
-}
-
-const items: Menu[] = [
-  { title: "Home", url: "/home", icon: Home, type: "main" },
-  { title: "Destination", url: "/destination", icon: MapPin, type: "main" },
-  { title: "Gastronomy", url: "/gastronomy", icon: Utensils, type: "main" },
-  { title: "Activity", url: "/activity", icon: Sun, type: "main" },
-  { title: "Hosting", url: "/hosting", icon: Bed, type: "main" },
-  { title: "Support", url: "/support", icon: LifeBuoyIcon, type: "utils" },
-  { title: "Settings", url: "/settings", icon: Settings, type: "utils" },
-];
+import { ChevronDown } from "lucide-react";
+import { Logo } from "@/app/logo";
+import { items } from "@/app/menu";
+import { ItemsMenu } from "./itemsMenu";
 
 export function AppSidebar() {
-  const renderMenuItems = (menuItems: Menu[]) => (
-    <SidebarMenu>
-      {menuItems.map((item) => (
-        <SidebarMenuItem key={item.title}>
-          <SidebarMenuButton asChild>
-            <Link href={item.url}>
-              <item.icon />
-              <span>{item.title}</span>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      ))}
-    </SidebarMenu>
-  );
-
-  const mainItems = items.filter(item => item.type === 'main');
-  const utilsItems = items.filter(item => item.type === 'utils');
+  const mainItems = items.filter((item) => item.type === "main");
+  const moreItems = items.filter((item) => item.type === "more");
 
   return (
     <Sidebar variant="floating">
       <SidebarContent>
-        <SidebarGroup>
+        <SidebarHeader>
           <Logo />
+        </SidebarHeader>
+        <SidebarGroup>
           <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
-            {renderMenuItems(mainItems)}
+            <ItemsMenu menuItems={mainItems} />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
@@ -74,7 +33,7 @@ export function AppSidebar() {
             </SidebarGroupLabel>
           </SidebarGroup>
           <CollapsibleContent>
-            {renderMenuItems(utilsItems)}
+            <ItemsMenu menuItems={moreItems} />
           </CollapsibleContent>
         </Collapsible>
       </SidebarFooter>

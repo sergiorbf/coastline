@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CalendarDays, Diff, MapPinHouse, Search, UserRound, Calendar as IconCalendar } from "lucide-react";
+import { CalendarDays, Diff, MapPinHouse, Search, UserRound, Calendar as IconCalendar, MapPin } from "lucide-react";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Popover, PopoverContent } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -16,24 +16,36 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { IncrementDecrementButton } from "@/components/ui/incrementDecrementButton";
 
 const formSchema = z.object({
   location: z.string().min(3).max(50),
   dateFrom: z.string().date(),
   dateTo: z.string().date()
-
 })
 
-const monthsOfYear = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+const popularDestinations = [
+  { city: 'Florianópolis', country: 'Brazil' },
+  { city: 'Bombinhas', country: 'Brazil' },
+  { city: 'Itapema', country: 'Brazil' },
+  { city: 'Praia do Rosa', country: 'Brazil' },
+  { city: 'Itajaí', country: 'Brazil' }
 ];
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  // Do something with the form values.
-  // ✅ This will be type-safe and validated.
-  console.log(values)
-}
+const monthsOfYear = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 
 export default function Home() {
 
@@ -43,6 +55,14 @@ export default function Home() {
       location: ""
     }
   })
+
+  const handleOnSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values)
+  }
+
+  const handleDestinationClick = (destination: string) => {
+    form.setValue("location", destination);
+  };
 
   return (
     <>
@@ -62,8 +82,8 @@ export default function Home() {
         <div>
           <section>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <div className="flex gap-10">
+              <form onSubmit={form.handleSubmit(handleOnSubmit)}>
+                <div className="flex items-center gap-10 border border-zinc-500 rounded-full p-3">
 
                   <Popover>
                     <PopoverTrigger className="flex gap-2 ">
@@ -82,6 +102,32 @@ export default function Home() {
                           </FormItem>
                         )}
                       />
+                      <div className="mt-2 space-y-1">
+                        <div className="text-sm font-semibold py-3 px-2">
+                          <span>
+                            Popular destinations nearby
+                          </span>
+                        </div>
+                        {popularDestinations.map((destination) => (
+                          <Button
+                            key={destination.city}
+                            type="button"
+                            variant="ghost"
+                            className="w-full justify-start gap-4 px-2 py-1 rounded hover:bg-gray-100"
+                            onClick={() => handleDestinationClick(destination.city)}
+                          >
+                            <MapPin />
+                            <div className="flex flex-col items-start">
+                              <span>
+                                {destination.city}
+                              </span>
+                              <span className="text-xs text-zinc-500">
+                                {destination.country}
+                              </span>
+                            </div>
+                          </Button>
+                        ))}
+                      </div>
                     </PopoverContent>
                   </Popover>
 
@@ -180,10 +226,15 @@ export default function Home() {
                                 </div>
 
                                 <Separator className="my-4" />
-                                <div className="flex flex-col items-center">
-                                  <span>
-                                    When do you want to go?
-                                  </span>
+                                <div className="flex flex-col items-center gap-4">
+                                  <div className="flex flex-col items-center">
+                                    <span>
+                                      When do you want to go?
+                                    </span>
+                                    <span className="text-xs text-zinc-500">
+                                      Select up to 3 months
+                                    </span>
+                                  </div>
                                   <Carousel
                                     opts={{
                                       align: "start",
@@ -219,7 +270,6 @@ export default function Home() {
                                   </Carousel>
                                 </div>
 
-
                               </div>
                             </CardContent>
                           </TabsContent>
@@ -235,16 +285,31 @@ export default function Home() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto">
                       <Card>
-                        <CardContent className="flex flex-col gap-2">
-                          <span>
-                            Adults
-                          </span>
-                          <span>
-                            Children
-                          </span>
-                          <span>
-                            Rooms
-                          </span>
+                        <CardContent className="flex flex-col gap-3 p-3">
+                          <div className="flex justify-between">
+                            <span className="flex flex-col">
+                              Adults
+                              <span className="text-xs text-zinc-500">
+                                13 years above
+                              </span>
+                            </span>
+                            <IncrementDecrementButton initialMinValue={1} initialMaxValue={0} />
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="flex flex-col">
+                              Children
+                              <span className="text-xs text-zinc-500">
+                                2 to 12 years old
+                              </span>
+                            </span>
+                            <IncrementDecrementButton initialMinValue={0} initialMaxValue={0} />
+                          </div>
+                          <div className="flex justify-between">
+                            <span>
+                              Rooms
+                            </span>
+                            <IncrementDecrementButton initialMinValue={1} initialMaxValue={0} />
+                          </div>
                           <Separator className="my-4" />
                           <span className="flex gap-5 items-center text-sm">
                             Traveling with pets?
@@ -263,12 +328,12 @@ export default function Home() {
                     </PopoverContent>
                   </Popover>
 
-                </div>
+                  <Button type="submit">
+                    <Search />
+                    Search
+                  </Button>
 
-                <Button type="submit">
-                  <Search />
-                  Search
-                </Button>
+                </div>
 
               </form>
             </Form>
