@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CalendarDays, Diff, MapPinHouse, Search, UserRound } from "lucide-react";
+import { CalendarDays, Diff, MapPinHouse, Search, UserRound, Calendar as IconCalendar } from "lucide-react";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { Popover, PopoverContent } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -23,6 +23,11 @@ const formSchema = z.object({
   dateTo: z.string().date()
 
 })
+
+const monthsOfYear = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 function onSubmit(values: z.infer<typeof formSchema>) {
   // Do something with the form values.
@@ -186,15 +191,23 @@ export default function Home() {
                                     className="w-full max-w-sm"
                                   >
                                     <CarouselContent>
-                                      {Array.from({ length: 5 }).map((_, index) => (
+                                      {monthsOfYear.map((month, index) => (
                                         <CarouselItem key={index}
-                                          className="md:basis-1/2 lg:basis-1/3">
+                                          className="md:basis-1/2 lg:basis-1/4">
                                           <div className="p-1">
                                             <Card>
                                               <CardContent className="flex aspect-square items-center justify-center p-6">
-                                                <span className="text-3xl font-semibold">
-                                                  {index + 1}
-                                                </span>
+                                                <div className="flex flex-col items-center gap-0.5">
+                                                  <span>
+                                                    <IconCalendar />
+                                                  </span>
+                                                  <span className="text-xs">
+                                                    {month}
+                                                  </span>
+                                                  <span className="text-xs">
+                                                    2025
+                                                  </span>
+                                                </div>
                                               </CardContent>
                                             </Card>
                                           </div>
