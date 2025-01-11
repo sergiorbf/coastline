@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/ui/app-sidebar";
-import { ThemeProvider } from 'next-themes'
+import { AppSidebar } from "@/components/app-sidebar";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,15 +25,18 @@ export default function RootLayout({
           type="image/svg+xml" />
       </head>
       <body className={inter.className}>
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="px-4 pb-12 pt-4 lg:col-start-2 lg:px-8 lg:pt-8 max-w-s">
-            <SidebarTrigger />
-            <ThemeProvider attribute='class'>
+        <ThemeProvider attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          <SidebarProvider className="min-h-screen">
+            <AppSidebar />
+            <main className="px-4 pb-12 pt-4 lg:col-start-2 lg:px-8 lg:pt-8 max-w-s">
+              <SidebarTrigger />
               {children}
-            </ThemeProvider>
-          </main>
-        </SidebarProvider>
+            </main>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

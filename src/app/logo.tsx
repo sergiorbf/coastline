@@ -1,7 +1,7 @@
 export function Logo() {
   return (
     <a href="/home">
-      <strong className="flex gap-2 text-xl font-semibold text-zinc-900 p-3">
+      <strong className="flex gap-2 text-xl font-semibold text-zinc-900 p-3 dark:text-zinc-100">
         <svg
           width={38}
           height={38}
@@ -11,7 +11,7 @@ export function Logo() {
           className=""
         >
           <path
-            stroke="#000"
+            className="stroke-black dark:stroke-zinc-100"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}

@@ -69,7 +69,7 @@ export default function Home() {
       <div className="p-8">
         <div className="mb-8">
           <header>
-            <h1 className="text-3xl font-bold text-zinc-900">
+            <h1 className="text-3xl font-bold">
               <span>
                 Where your coastal vacation begins
               </span>
@@ -113,7 +113,7 @@ export default function Home() {
                             key={destination.city}
                             type="button"
                             variant="ghost"
-                            className="w-full justify-start gap-4 px-2 py-1 rounded hover:bg-gray-100"
+                            className="w-full justify-start gap-4 px-2 py-1 rounded"
                             onClick={() => handleDestinationClick(destination.city)}
                           >
                             <MapPin />
