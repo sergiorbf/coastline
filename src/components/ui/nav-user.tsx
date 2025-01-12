@@ -85,17 +85,17 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/account-settings">
-                <DropdownMenuItem>
-                  <Settings />
-                  Account
-                </DropdownMenuItem>
-              </Link>
               <ModeToggle />
               <DropdownMenuItem>
                 <Heart />
                 Saved
               </DropdownMenuItem>
+              <Link href="/account-settings">
+                <DropdownMenuItem>
+                  <Settings />
+                  Settings
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <LifeBuoyIcon />
                 Support
