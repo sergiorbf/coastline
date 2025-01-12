@@ -66,13 +66,11 @@ export default function Home() {
 
   return (
     <>
-      <div className="p-8">
+      <div className="p-8 min-h-screen">
         <div className="mb-8">
           <header>
-            <h1 className="text-3xl font-bold">
-              <span>
-                Where your coastal vacation begins
-              </span>
+            <h1 className="text-4xl font-extrabold mb-2">
+              Where your coastal vacation begins
             </h1>
             <p className="text-lg font-medium">
               Find the perfect beach house, condo, or resort for your getaway...
@@ -83,47 +81,42 @@ export default function Home() {
           <section>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(handleOnSubmit)}>
-                <div className="flex items-center gap-10 border border-zinc-500 rounded-full p-3">
-
+                <div className="flex items-center gap-10 border border-zinc-500 rounded-full p-4 shadow-sm hover:shadow-md transition-shadow">
                   <Popover>
-                    <PopoverTrigger className="flex gap-2 ">
+                    <PopoverTrigger className="flex items-center gap-2">
                       <MapPinHouse />
-                      Where are you going?
+                      <span className="text-sm font-medium">Where are you going?</span>
                     </PopoverTrigger>
-                    <PopoverContent>
+                    <PopoverContent className="w-96 p-4 shadow-md rounded-lg">
                       <FormField
                         control={form.control}
                         name="location"
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
-                              <Input placeholder="Where are you going?" {...field} />
+                              <Input placeholder="Where are you going?" {...field} className="w-full" />
                             </FormControl>
                           </FormItem>
                         )}
                       />
-                      <div className="mt-2 space-y-1">
-                        <div className="text-sm font-semibold py-3 px-2">
-                          <span>
-                            Popular destinations nearby
-                          </span>
-                        </div>
+                      <div className="mt-4">
+                        <h3 className="text-sm font-bold mb-2">Popular destinations nearby</h3>
                         {popularDestinations.map((destination) => (
                           <Button
                             key={destination.city}
                             type="button"
                             variant="ghost"
-                            className="w-full justify-start gap-4 px-2 py-1 rounded"
+                            className="w-full flex justify-start gap-4 p-3 rounded-md"
                             onClick={() => handleDestinationClick(destination.city)}
                           >
                             <MapPin />
                             <div className="flex flex-col items-start">
-                              <span>
+                              <span className="text-sm font-medium">
                                 {destination.city}
                               </span>
-                              <span className="text-xs text-zinc-500">
+                              <p className="text-xs text-zinc-500">
                                 {destination.country}
-                              </span>
+                              </p>
                             </div>
                           </Button>
                         ))}
@@ -132,31 +125,26 @@ export default function Home() {
                   </Popover>
 
                   <Popover>
-                    <PopoverTrigger className="flex gap-2 ">
+                    <PopoverTrigger className="flex items-center gap-2">
                       <CalendarDays />
-                      Dates
+                      <span className="text-sm font-medium">Dates</span>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto">
-                      <Card>
+                    <PopoverContent className="w-auto p-4 shadow-md rounded-lg">
+                      <Card className="border-none shadow-none">
                         <Tabs defaultValue="calendar">
-                          <TabsList className="w-full">
-                            <TabsTrigger value="calendar">
-                              Calendar
-                            </TabsTrigger>
-                            <TabsTrigger value="flexible">
-                              {`I'm flexible`}
-                            </TabsTrigger>
+                          <TabsList className="w-full mb-4">
+                            <TabsTrigger value="calendar" className="w-1/2">Calendar</TabsTrigger>
+                            <TabsTrigger value="flexible" className="w-1/2">{`I'm flexible`}</TabsTrigger>
                           </TabsList>
                           <TabsContent value="calendar">
-                            <CardContent className="flex gap-2">
+                            <CardContent className="grid grid-cols-2 gap-4">
                               <FormField
                                 control={form.control}
                                 name="dateFrom"
                                 render={({ field }) => (
                                   <FormItem>
                                     <FormControl>
-                                      <Calendar mode="single" {...field}
-                                      />
+                                      <Calendar mode="single" {...field} />
                                     </FormControl>
                                   </FormItem>
                                 )}
@@ -167,8 +155,7 @@ export default function Home() {
                                 render={({ field }) => (
                                   <FormItem>
                                     <FormControl>
-                                      <Calendar mode="single" {...field}
-                                      />
+                                      <Calendar mode="single" {...field} />
                                     </FormControl>
                                   </FormItem>
                                 )}
@@ -201,75 +188,67 @@ export default function Home() {
                           </TabsContent>
                           <TabsContent value="flexible">
                             <CardContent>
-                              <div className="p-3">
+                              <p className="text-center mb-4">How long would you like to stay?</p>
+                              <div className="flex justify-center gap-4">
+                                <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
+                                  <Label className="group-hover:cursor-pointer">
+                                    A weekend
+                                  </Label>
+                                </div>
+                                <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
+                                  <Label className="group-hover:cursor-pointer">
+                                    A week
+                                  </Label>
+                                </div>
+                                <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
+                                  <Label className="group-hover:cursor-pointer">
+                                    A month
+                                  </Label>
+                                </div>
+                              </div>
+                              <Separator className="my-4" />
+                              <div className="flex flex-col items-center gap-4">
                                 <div className="flex flex-col items-center">
                                   <span>
-                                    How long would you like to stay?
+                                    When do you want to go?
+                                  </span>
+                                  <span className="text-xs text-zinc-500">
+                                    Select up to 3 months
                                   </span>
                                 </div>
-                                <div className="p-10 flex gap-4">
-                                  <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
-                                    <Label className="group-hover:cursor-pointer">
-                                      A weekend
-                                    </Label>
-                                  </div>
-                                  <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
-                                    <Label className="group-hover:cursor-pointer">
-                                      A week
-                                    </Label>
-                                  </div>
-                                  <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
-                                    <Label className="group-hover:cursor-pointer">
-                                      A month
-                                    </Label>
-                                  </div>
-                                </div>
-
-                                <Separator className="my-4" />
-                                <div className="flex flex-col items-center gap-4">
-                                  <div className="flex flex-col items-center">
-                                    <span>
-                                      When do you want to go?
-                                    </span>
-                                    <span className="text-xs text-zinc-500">
-                                      Select up to 3 months
-                                    </span>
-                                  </div>
-                                  <Carousel
-                                    opts={{
-                                      align: "start",
-                                    }}
-                                    className="w-full max-w-sm"
-                                  >
-                                    <CarouselContent>
-                                      {monthsOfYear.map((month, index) => (
-                                        <CarouselItem key={index}
-                                          className="md:basis-1/2 lg:basis-1/4">
-                                          <div className="p-1">
-                                            <Card>
-                                              <CardContent className="flex aspect-square items-center justify-center p-6">
-                                                <div className="flex flex-col items-center gap-0.5">
-                                                  <span>
-                                                    <IconCalendar />
-                                                  </span>
-                                                  <span className="text-xs">
-                                                    {month}
-                                                  </span>
-                                                  <span className="text-xs">
-                                                    2025
-                                                  </span>
-                                                </div>
-                                              </CardContent>
-                                            </Card>
-                                          </div>
-                                        </CarouselItem>
-                                      ))}
-                                    </CarouselContent>
-                                    <CarouselPrevious />
-                                    <CarouselNext />
-                                  </Carousel>
-                                </div>
-
+                                <Carousel
+                                  opts={{
+                                    align: "start",
+                                  }}
+                                  className="w-full max-w-sm"
+                                >
+                                  <CarouselContent>
+                                    {monthsOfYear.map((month, index) => (
+                                      <CarouselItem key={index}
+                                        className="md:basis-1/2 lg:basis-1/4">
+                                        <div className="p-1">
+                                          <Card>
+                                            <CardContent className="flex aspect-square items-center justify-center p-6">
+                                              <div className="flex flex-col items-center gap-0.5">
+                                                <span>
+                                                  <IconCalendar />
+                                                </span>
+                                                <span className="text-xs">
+                                                  {month}
+                                                </span>
+                                                <span className="text-xs">
+                                                  2025
+                                                </span>
+                                              </div>
+                                            </CardContent>
+                                          </Card>
+                                        </div>
+                                      </CarouselItem>
+                                    ))}
+                                  </CarouselContent>
+                                  <CarouselPrevious />
+                                  <CarouselNext />
+                                </Carousel>
                               </div>
                             </CardContent>
                           </TabsContent>
@@ -279,35 +258,29 @@ export default function Home() {
                   </Popover>
 
                   <Popover>
-                    <PopoverTrigger className="flex gap-2 ">
+                    <PopoverTrigger className="flex items-center gap-2">
                       <UserRound />
-                      Traveling
+                      <span className="text-sm font-medium">Traveling</span>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto">
-                      <Card>
-                        <CardContent className="flex flex-col gap-3 p-3">
-                          <div className="flex justify-between">
-                            <span className="flex flex-col">
-                              Adults
-                              <span className="text-xs text-zinc-500">
-                                13 years above
-                              </span>
-                            </span>
+                    <PopoverContent className="w-auto p-4 shadow-md rounded-lg">
+                      <Card className="border-none shadow-none">
+                        <CardContent className="space-y-4">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <p className="font-medium">Adults</p>
+                              <span className="text-xs text-zinc-500">13 years and above</span>
+                            </div>
                             <IncrementDecrementButton initialMinValue={1} initialMaxValue={0} />
                           </div>
-                          <div className="flex justify-between">
-                            <span className="flex flex-col">
-                              Children
-                              <span className="text-xs text-zinc-500">
-                                2 to 12 years old
-                              </span>
-                            </span>
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <p className="font-medium">Children</p>
+                              <span className="text-xs text-zinc-500">2 to 12 years old</span>
+                            </div>
                             <IncrementDecrementButton initialMinValue={0} initialMaxValue={0} />
                           </div>
-                          <div className="flex justify-between">
-                            <span>
-                              Rooms
-                            </span>
+                          <div className="flex justify-between items-center">
+                            <p className="font-medium">Rooms</p>
                             <IncrementDecrementButton initialMinValue={1} initialMaxValue={0} />
                           </div>
                           <Separator className="my-4" />
@@ -319,11 +292,6 @@ export default function Home() {
                             By selecting this option, you will only see properties that accept pets.
                           </span>
                         </CardContent>
-                        <CardFooter>
-                          <Button className="w-full">
-                            Done
-                          </Button>
-                        </CardFooter>
                       </Card>
                     </PopoverContent>
                   </Popover>
@@ -332,9 +300,7 @@ export default function Home() {
                     <Search />
                     Search
                   </Button>
-
                 </div>
-
               </form>
             </Form>
           </section>
