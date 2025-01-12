@@ -18,12 +18,6 @@ import { Label } from "@/components/ui/label";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { IncrementDecrementButton } from "@/components/ui/incrementDecrementButton";
 
-const formSchema = z.object({
-  location: z.string().min(3).max(50),
-  dateFrom: z.string().date(),
-  dateTo: z.string().date()
-})
-
 const popularDestinations = [
   { city: 'Florianópolis', country: 'Brazil' },
   { city: 'Bombinhas', country: 'Brazil' },
@@ -46,6 +40,12 @@ const monthsOfYear = [
   "November",
   "December"
 ];
+
+const formSchema = z.object({
+  location: z.string().min(3).max(50),
+  dateFrom: z.string().date(),
+  dateTo: z.string().date()
+})
 
 export default function Home() {
 

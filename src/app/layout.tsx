@@ -29,7 +29,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
         >
-          <SidebarProvider className="min-h-screen">
+          <SidebarProvider>
             <AppSidebar />
             <main className="px-4 pb-12 pt-4 lg:col-start-2 lg:px-8 lg:pt-8 max-w-s">
               <SidebarTrigger />
