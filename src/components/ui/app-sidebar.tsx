@@ -2,8 +2,6 @@
 
 import * as React from "react"
 import { Bed, Home, MapPin, Sun, Utensils } from "lucide-react"
-import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +10,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { Logo } from "@/app/logo"
+import { NavMain } from "./nav-main"
+import { NavUser } from "./nav-user"
 
 const data = {
   user: {

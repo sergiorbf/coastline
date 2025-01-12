@@ -28,7 +28,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { ModeToggle } from "./ui/mode-toggle"
+import { ModeToggle } from "./mode-toggle"
 import Link from "next/link"
 
 export function NavUser({

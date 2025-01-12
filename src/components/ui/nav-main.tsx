@@ -35,7 +35,9 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Menu</SidebarGroupLabel>
+      <SidebarGroupLabel>
+        Menu
+      </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const hasSubItems = item.items && item.items.length > 0;
@@ -77,7 +79,9 @@ export function NavMain({
                 <Link href={item.url}>
                   <SidebarMenuButton tooltip={item.title}>
                     {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                    <span>
+                      {item.title}
+                    </span>
                   </SidebarMenuButton>
                 </Link>
               )}
