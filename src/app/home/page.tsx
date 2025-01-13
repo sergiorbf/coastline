@@ -26,7 +26,7 @@ const popularDestinations = [
   { city: 'Itajaí', country: 'Brazil' }
 ];
 
-const monthsOfYear = [
+export const monthsOfYear = [
   "January",
   "February",
   "March",

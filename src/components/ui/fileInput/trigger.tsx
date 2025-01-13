@@ -9,7 +9,7 @@ export function FileInputTrigger() {
   return (
     <label
       htmlFor={id}
-      className="group flex-1 cursor-pointer flex flex-col items-center gap-3 rounded-lg border border-zinc-300 px-6 py-4 text-center text-zinc-500 shadow-sm hover:border-zinc-200 hover:bg-zinc-25 hover:text-zinc-500 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-300">
+      className="group flex-1 cursor-pointer flex flex-col items-center gap-3 rounded-lg border border-zinc-300 px-6 py-4 text-center text-zinc-500 shadow-sm hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-300">
 
       <div className="rounded-full border-6 border-zinc-50 bg-zinc-100 p-2 group-hover:border-zinc-50 group-hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:group-hover:border-zinc-600 dark:group-hover:bg-zinc-700">
         <UploadCloud className="h-5 w-5 text-zinc-600 group-hover:text-zinc-700 dark:text-zinc-500 dark:group-hover:text-zinc-300" />
