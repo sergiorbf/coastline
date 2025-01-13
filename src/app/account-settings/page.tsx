@@ -88,7 +88,7 @@ export default function AccountSettings() {
 
           <Card className="border shadow-md hover:shadow-lg transition-shadow">
             <CardTitle className="p-4 flex items-center border-b">
-              <Settings className="w-6 h-6 text-gray-500 mr-3" />
+              <Settings className="w-6 h-6 text-zinc-500 mr-3" />
               <h2 className="text-xl font-semibold">Account</h2>
             </CardTitle>
             <CardContent className="p-4">
@@ -97,7 +97,7 @@ export default function AccountSettings() {
               </p>
             </CardContent>
             <CardFooter className="p-4">
-              <LinkButton href="account-settings/account" buttonText="Manage Account" />
+              <LinkButton href="account-settings/settings" buttonText="Manage Account" />
             </CardFooter>
           </Card>
         </div>

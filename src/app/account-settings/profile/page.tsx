@@ -15,7 +15,7 @@ import { FileInputImagePreview } from "@/components/ui/fileInput/imagePreview"
 import { FileInputTrigger } from "@/components/ui/fileInput/trigger"
 import { FileInputControl } from "@/components/ui/fileInput/control"
 
-const monthsOfYear = [
+export const monthsOfYear: string[] = [
   "January",
   "February",
   "March",
@@ -95,7 +95,7 @@ export default function Profile() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="/profile">
+                <BreadcrumbLink href="/account-settings/profile">
                   Profile
                 </BreadcrumbLink>
               </BreadcrumbItem>
