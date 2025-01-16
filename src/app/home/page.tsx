@@ -1,23 +1,24 @@
 'use client'
 
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { CalendarDays, Diff, MapPinHouse, Search, UserRound, Calendar as IconCalendar, MapPin } from "lucide-react";
-import { PopoverTrigger } from "@radix-ui/react-popover";
-import { Popover, PopoverContent } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Label } from "@/components/ui/label";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { IncrementDecrementButton } from "@/components/ui/incrementDecrementButton";
-import { monthsOfYear } from "../account-settings/profile/page";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { CalendarDays, Diff, MapPinHouse, Search, UserRound, Calendar as IconCalendar, MapPin } from "lucide-react"
+import { PopoverTrigger } from "@radix-ui/react-popover"
+import { Popover, PopoverContent } from "@/components/ui/popover"
+import { Calendar } from "@/components/ui/calendar"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Label } from "@/components/ui/label"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { IncrementDecrementButton } from "@/components/ui/incrementDecrementButton"
+import { monthsOfYear } from "../account-settings/profile/page"
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const popularDestinations = [
   { city: 'Florianópolis', country: 'Brazil' },
@@ -25,7 +26,7 @@ const popularDestinations = [
   { city: 'Itapema', country: 'Brazil' },
   { city: 'Praia do Rosa', country: 'Brazil' },
   { city: 'Itajaí', country: 'Brazil' }
-];
+]
 
 const formSchema = z.object({
   location: z.string().min(3).max(50),
@@ -47,12 +48,14 @@ export default function Home() {
   }
 
   const handleDestinationClick = (destination: string) => {
-    form.setValue("location", destination);
-  };
+    form.setValue("location", destination)
+  }
+
+  const [parent] = useAutoAnimate()
 
   return (
     <>
-      <div className="p-8 min-h-screen">
+      <div className="p-8 min-h-screen" ref={parent}>
         <div className="mb-8">
           <header>
             <h1 className="text-4xl font-extrabold mb-2">
@@ -174,7 +177,9 @@ export default function Home() {
                           </TabsContent>
                           <TabsContent value="flexible">
                             <CardContent>
-                              <p className="text-center mb-4">How long would you like to stay?</p>
+                              <p className="text-center mb-4">
+                                How long would you like to stay?
+                              </p>
                               <div className="flex justify-center gap-4">
                                 <div className="border border-zinc-300 rounded-full px-2 hover:border-zinc-700 group cursor-pointer">
                                   <Label className="group-hover:cursor-pointer">
@@ -293,5 +298,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
