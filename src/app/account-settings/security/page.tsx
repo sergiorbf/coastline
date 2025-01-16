@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { Card, CardContent } from "@/components/ui/card"

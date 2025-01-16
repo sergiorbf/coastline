@@ -1,7 +1,7 @@
 'use client'
 
-import { UploadCloud } from "lucide-react";
-import { useFileInput } from "./root";
+import { UploadCloud } from "lucide-react"
+import { useFileInput } from "./root"
 
 export function FileInputTrigger() {
   const { id } = useFileInput()

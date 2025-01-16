@@ -4,11 +4,11 @@ import { useTheme } from "next-themes"
 import { DropdownMenuItem } from "./dropdown-menu"
 
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme } = useTheme()
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light")
-  };
+  }
 
   return (
     <DropdownMenuItem
@@ -25,5 +25,5 @@ export function ModeToggle() {
         Toggle
       </span>
     </DropdownMenuItem>
-  );
+  )
 }

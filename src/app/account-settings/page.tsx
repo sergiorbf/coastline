@@ -1,6 +1,6 @@
-import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
-import { LinkButton } from "@/components/ui/linkButton";
-import { Settings, User, Lock, CreditCard, Bell, Globe } from "lucide-react";
+import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card"
+import { LinkButton } from "@/components/ui/linkButton"
+import { Settings, User, Lock, CreditCard, Bell, Globe } from "lucide-react"
 
 export default function AccountSettings() {
   return (
@@ -103,5 +103,5 @@ export default function AccountSettings() {
         </div>
       </section>
     </>
-  );
+  )
 }

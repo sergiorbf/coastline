@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Button } from "./button";
+import Link from "next/link"
+import { Button } from "./button"
 
 type LinkButtonProps = {
-  href: string;
-  buttonText: string;
-};
+  href: string
+  buttonText: string
+}
 
 export const LinkButton: React.FC<LinkButtonProps> = ({ href, buttonText }) => {
   return (
@@ -14,5 +14,5 @@ export const LinkButton: React.FC<LinkButtonProps> = ({ href, buttonText }) => {
         {buttonText}
       </Button>
     </Link>
-  );
-};
+  )
+}

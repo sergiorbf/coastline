@@ -14,6 +14,7 @@ import { FileInputRoot } from "@/components/ui/fileInput/root"
 import { FileInputImagePreview } from "@/components/ui/fileInput/imagePreview"
 import { FileInputTrigger } from "@/components/ui/fileInput/trigger"
 import { FileInputControl } from "@/components/ui/fileInput/control"
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export const monthsOfYear: string[] = [
   "January",
@@ -82,9 +83,11 @@ export default function Profile() {
     console.log(values)
   }
 
+  const [parent] = useAutoAnimate()
+
   return (
     <>
-      <div className="p-8 min-h-screen w-full">
+      <div className="p-8 min-h-screen w-full" ref={parent}>
         <div className="mb-6">
           <Breadcrumb>
             <BreadcrumbList>

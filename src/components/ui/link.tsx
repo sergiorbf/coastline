@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import Link from "next/link";
-import { ElementType } from "react";
+import clsx from "clsx"
+import Link from "next/link"
+import { ElementType } from "react"
 
 export interface LinkToProps {
   url: string
