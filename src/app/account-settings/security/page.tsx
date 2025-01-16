@@ -34,14 +34,15 @@ export default function Security() {
 
   const [is2FAEnabled, setIs2FAEnabled] = useState(false)
 
-  function handleOnSubmit(data: SecurityFormValues) {
-    console.log("Form Data:", data)
-  }
-
   function toggle2FA() {
     setIs2FAEnabled((prev) => !prev)
     console.log(is2FAEnabled ? "2FA Disabled" : "2FA Enabled")
   }
+
+  function handleOnSubmit(data: SecurityFormValues) {
+    console.log("Form Data:", data)
+  }
+
 
   return (
     <>
@@ -122,7 +123,7 @@ export default function Security() {
 
             <div className="mt-8">
               <h2 className="text-lg font-bold mb-2">Two-Factor Authentication</h2>
-              <div className="flex items-center justify-between py-2">
+              <div className="flex items-center justify-between py-2 gap-5">
                 <span className="text-sm text-zinc-500">
                   Enable Two-Factor Authentication for added account security.
                 </span>

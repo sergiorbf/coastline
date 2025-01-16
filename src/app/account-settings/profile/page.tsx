@@ -160,7 +160,7 @@ export default function Profile() {
                     <FormItem>
                       <FormLabel>Phone number</FormLabel>
                       <FormControl>
-                        <Input type="numver" placeholder="Add your phone number" {...field} />
+                        <Input type="number" placeholder="Add your phone number" {...field} />
                       </FormControl>
                     </FormItem>
                   )}
