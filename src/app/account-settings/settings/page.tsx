@@ -33,12 +33,14 @@ export default function Settings() {
 
         <Card className="w-full max-w-2xl mx-auto shadow-md rounded-lg">
           <CardContent>
-            <h1 className="text-2xl font-bold mb-4 py-4">Account</h1>
-
-
+            <h1 className="text-2xl font-bold mb-4 py-4">
+              Account
+            </h1>
 
             <div className="mt-8">
-              <h2 className="text-lg font-bold mb-2">Deactivate Account</h2>
+              <h2 className="text-lg font-bold mb-2">
+                Deactivate Account
+              </h2>
               <p className="text-sm text-zinc-500 mb-4">
                 If you deactivate your account, you will no longer be able to access it. This action is permanent.
               </p>

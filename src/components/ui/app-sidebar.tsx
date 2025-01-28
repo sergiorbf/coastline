@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Bed, Home, MapPin, Sun, Utensils } from "lucide-react"
+import { Bed, Home, MapPin, Utensils, Waves } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -37,9 +37,9 @@ const data = {
         icon: Utensils,
       },
       {
-        title: "Activity",
-        url: "/activity",
-        icon: Sun,
+        title: "Experiences",
+        url: "/experiences",
+        icon: Waves,
       },
       {
         title: "Hosting",
