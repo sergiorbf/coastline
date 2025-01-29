@@ -42,7 +42,7 @@ export default function Gastronomy() {
       <p className="text-zinc-600 mb-8">
         {"Discover the best dining experiences along Brazil's coastal towns. From fresh seafood to international cuisine, these restaurants offer unforgettable flavors."}
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {restaurants.map((restaurant, index) => (
           <div
             key={index}
