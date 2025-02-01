@@ -17,8 +17,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Label } from "@/components/ui/label"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { IncrementDecrementButton } from "@/components/ui/incrementDecrementButton"
-import { monthsOfYear } from "../account-settings/profile/page"
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { monthsOfYear } from "@/app/(private)/account-settings/profile/page"
 
 const popularDestinations = [
   { city: 'Florianópolis', country: 'Brazil' },
