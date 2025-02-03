@@ -110,10 +110,12 @@ export function NavUser({
                   Settings
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem>
-                <LifeBuoyIcon />
-                Support
-              </DropdownMenuItem>
+              <Link href="/support">
+                <DropdownMenuItem>
+                  <LifeBuoyIcon />
+                  Support
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <Link href="/sign-in">

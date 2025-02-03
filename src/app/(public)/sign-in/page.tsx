@@ -28,11 +28,11 @@ export default function SignIn() {
   };
 
   return (
-    <div className="p-6 min-h-screen flex items-center">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center">
-            Sign In
+            Login
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -74,8 +74,8 @@ export default function SignIn() {
             </form>
           </Form>
           <p className="text-sm text-center text-zinc-600 mt-4">
-            {"Don't have an account?"}
-            <a href="#" className="text-blue-500 hover:underline">
+            {"Don't have an account? "}
+            <a href="/register" className="text-blue-500 hover:underline">
               Sign Up
             </a>
           </p>
