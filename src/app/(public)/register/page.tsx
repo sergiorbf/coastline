@@ -8,11 +8,23 @@ import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { signup } from "@/app/actions/auth";
 
 const formSchema = z.object({
-  email: z.string().min(1, { message: "Email is required" }).email({ message: "Invalid email" }),
-  password: z.string().min(1, { message: "Password is required" }),
+  email: z.string().email({ message: 'Please enter a valid email' }).trim(),
+  password: z
+    .string()
+    .min(8, { message: 'Be at least 8 characters long' })
+    .regex(/[a-zA-Z]/, { message: 'Contain at least one letter.' })
+    .regex(/[0-9]/, { message: 'Contain at least one number.' })
+    .regex(/[^a-zA-Z0-9]/, {
+      message: 'Contain at least one special character.',
+    })
+    .trim(),
   passwordConfirm: z.string().min(1, { message: "Confirmation password is required" }),
+}).refine((data) => data.password === data.passwordConfirm, {
+  message: "Passwords must match",
+  path: ["passwordConfirm"],
 });
 
 export default function Register() {
@@ -40,6 +52,7 @@ export default function Register() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleOnSubmit)}
+              action={signup}
               className="space-y-4">
               <FormField control={form.control}
                 name="email"
@@ -50,6 +63,7 @@ export default function Register() {
                     </Label>
                     <FormControl>
                       <Input {...field}
+                        id="email"
                         type="email"
                         placeholder="Enter your email" required />
                     </FormControl>
@@ -65,6 +79,7 @@ export default function Register() {
                     <FormControl>
                       <Input {...field}
                         type="password"
+                        id="password"
                         placeholder="Enter your password" required />
                     </FormControl>
                   </FormItem>
@@ -79,6 +94,7 @@ export default function Register() {
                     <FormControl>
                       <Input {...field}
                         type="password"
+                        id="passwordConfirm"
                         placeholder="Confirm your password" required />
                     </FormControl>
                   </FormItem>
@@ -92,7 +108,7 @@ export default function Register() {
           <p className="text-sm text-center text-zinc-600 mt-4">
             {"Already have an account? "}
             <a href="/sign-in" className="text-blue-500 hover:underline">
-              Login
+              Sign In
             </a>
           </p>
         </CardContent>
