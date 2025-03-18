@@ -8,9 +8,10 @@ import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { signup } from "@/app/actions/auth";
+// import { SignUpAuth } from "@/app/actions/auth";
+// import { useActionState } from "react";
 
-const formSchema = z.object({
+export const SignupFormSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email' }).trim(),
   password: z
     .string()
@@ -27,9 +28,20 @@ const formSchema = z.object({
   path: ["passwordConfirm"],
 });
 
+export type FormState =
+  | {
+    errors?: {
+      email?: string[]
+      password?: string[]
+      passwordConfirm?: string[]
+    }
+    message?: string
+  }
+  | undefined
+
 export default function Register() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof SignupFormSchema>>({
+    resolver: zodResolver(SignupFormSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -37,9 +49,11 @@ export default function Register() {
     },
   });
 
-  const handleOnSubmit = (values: z.infer<typeof formSchema>) => {
+  const handleOnSubmit = (values: z.infer<typeof SignupFormSchema>) => {
     console.log(values);
   };
+
+  // const [state, action, pending] = useActionState(SignUpAuth, undefined)
 
   return (
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6">
@@ -52,7 +66,6 @@ export default function Register() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleOnSubmit)}
-              action={signup}
               className="space-y-4">
               <FormField control={form.control}
                 name="email"
@@ -69,6 +82,7 @@ export default function Register() {
                     </FormControl>
                   </FormItem>
                 )} />
+              {/* {state?.errors?.email && <p>{state.errors.email}</p>} */}
               <FormField control={form.control}
                 name="password"
                 render={({ field }) => (
@@ -84,6 +98,16 @@ export default function Register() {
                     </FormControl>
                   </FormItem>
                 )} />
+              {/* {state?.errors?.password && (
+                <div>
+                  <p>Password must:</p>
+                  <ul>
+                    {state.errors.password.map((error) => (
+                      <li key={error}>- {error}</li>
+                    ))}
+                  </ul>
+                </div>
+              )} */}
               <FormField control={form.control}
                 name="passwordConfirm"
                 render={({ field }) => (
@@ -99,6 +123,16 @@ export default function Register() {
                     </FormControl>
                   </FormItem>
                 )} />
+              {/* {state?.errors?.passwordConfirm && (
+                <div>
+                  <p>Confirm Password must:</p>
+                  <ul>
+                    {state.errors.passwordConfirm.map((error) => (
+                      <li key={error}>- {error}</li>
+                    ))}
+                  </ul>
+                </div>
+              )} */}
               <Button type="submit"
                 className="w-full mt-4">
                 Sign Up
@@ -108,7 +142,7 @@ export default function Register() {
           <p className="text-sm text-center text-zinc-600 mt-4">
             {"Already have an account? "}
             <a href="/sign-in" className="text-blue-500 hover:underline">
-              Sign In
+              Log In
             </a>
           </p>
         </CardContent>
